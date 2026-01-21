@@ -1,0 +1,9 @@
+{
+  "rss_urls": [
+    "http://feeds.bbci.co.uk/news/rss.xml",
+    "https://www.reuters.com/tools/rss",
+        "https://www.theguardian.com/world/rss"
+
+  ],
+"keywords": ["Python", "Data", "Tech", "AI", "News"]
+}
