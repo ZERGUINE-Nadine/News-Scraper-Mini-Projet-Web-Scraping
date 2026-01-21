@@ -5,14 +5,13 @@ from pymongo import MongoClient
 from utils import clean_text, parse_date
 
 config = {}
-# Charger la configuration
+
 with open('config.json', encoding='utf-8') as f:
     config = json.load(f)
 
 RSS_URLS = config["rss_urls"]
 KEYWORDS = config["keywords"]
 
-# Connexion MongoDB
 client = MongoClient("mongodb://localhost:27017/")
 db = client["news_db"]
 collection = db["articles"]
@@ -30,7 +29,6 @@ for url in RSS_URLS:
         pub_date = parse_date(item.pubDate.text)
         description = clean_text(item.description.text) if item.description else ""
 
-        # Filtrage par mots-clés
         if any(keyword.lower() in title.lower() for keyword in KEYWORDS):
             article = {
                 "title": title,
@@ -39,10 +37,8 @@ for url in RSS_URLS:
                 "description": description
             }
             all_articles.append(article)
-            # Sauvegarde dans MongoDB
             collection.update_one({"link": link}, {"$set": article}, upsert=True)
 
-# Sauvegarde en JSON
 with open('articles.json', 'w', encoding='utf-8') as f:
     json.dump(all_articles, f, ensure_ascii=False, indent=4)
 

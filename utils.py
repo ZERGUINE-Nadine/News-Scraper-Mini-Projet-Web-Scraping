@@ -9,3 +9,4 @@ def parse_date(date_str):
         return datetime.strptime(date_str, '%a, %d %b %Y %H:%M:%S %Z').strftime('%Y-%m-%d')
     except:
         return date_str
+
