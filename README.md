@@ -22,10 +22,7 @@ Le projet a été conçu dans un objectif **pédagogique et professionnel**, not
 
 ---
 
-##  Structure du projet
 
-
----
 
 ##  Fonctionnalités
 - Extraction des :
